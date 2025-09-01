@@ -16,14 +16,11 @@ const SignIn: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
     try {
-      const response = await api.post('/auth/signin', formData);
+      const response = await api.post('/api/auth/signin', formData);
       const { token, user } = response.data;
-
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
-
       toast.success('Welcome back!');
       navigate('/dashboard');
     } catch (error: any) {
@@ -36,14 +33,12 @@ const SignIn: React.FC = () => {
   const handleGoogleSuccess = async (credentialResponse: CredentialResponse) => {
     try {
       setLoading(true);
-      const response = await api.post('/auth/google', {
+      const response = await api.post('/api/auth/google', {
         credential: credentialResponse.credential
       });
-
       const { token, user } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
-
       toast.success('Welcome!');
       navigate('/dashboard');
     } catch (error: any) {
@@ -74,7 +69,6 @@ const SignIn: React.FC = () => {
               Welcome back! Please sign in to your account.
             </p>
           </div>
-
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -92,7 +86,6 @@ const SignIn: React.FC = () => {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
-
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                 Password
@@ -109,7 +102,6 @@ const SignIn: React.FC = () => {
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               />
             </div>
-
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -122,14 +114,12 @@ const SignIn: React.FC = () => {
                   Remember me
                 </label>
               </div>
-
               <div className="text-sm">
-                <Link to="/forgot-password" className="...">Forgot password?</Link>
+                <Link to="/forgot-password" className="font-medium text-blue-600 hover:text-blue-500">
                   Forgot your password?
-                
+                </Link>
               </div>
             </div>
-
             <div>
               <button
                 type="submit"
@@ -139,7 +129,6 @@ const SignIn: React.FC = () => {
                 {loading ? 'Signing in...' : 'Sign in'}
               </button>
             </div>
-
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-300" />
@@ -148,7 +137,6 @@ const SignIn: React.FC = () => {
                 <span className="px-2 bg-white text-gray-500">Or continue with</span>
               </div>
             </div>
-
             <div className="w-full">
               <GoogleLogin
                 onSuccess={handleGoogleSuccess}
@@ -159,7 +147,6 @@ const SignIn: React.FC = () => {
                 locale="en"
               />
             </div>
-
             <p className="text-center text-sm text-gray-600">
               Don't have an account?{' '}
               <Link to="/signup" className="font-medium text-blue-600 hover:text-blue-500">
@@ -169,7 +156,6 @@ const SignIn: React.FC = () => {
           </form>
         </div>
       </div>
-
       <div className="hidden lg:block relative w-0 flex-1">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-transparent"></div>
