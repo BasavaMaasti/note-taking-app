@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
 
   const fetchNotes = async () => {
     try {
-      const response = await api.get('/notes');
+      const response = await api.get('/api/notes');
       setNotes(response.data);
     } catch (error: any) {
       toast.error('Failed to fetch notes');
@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
 
     setCreateLoading(true);
     try {
-      const response = await api.post('/notes', formData);
+      const response = await api.post('/api/notes', formData);
       setNotes(prev => [response.data, ...prev]);
       setFormData({ title: '', content: '' });
       setShowCreateForm(false);
@@ -76,7 +76,7 @@ const Dashboard: React.FC = () => {
 
     setUpdateLoading(true);
     try {
-      const response = await api.put(`/notes/${selectedNote._id}`, formData);
+      const response = await api.put(`/api/notes/${selectedNote._id}`, formData);
       setNotes(prev => prev.map(note => 
         note._id === selectedNote._id ? response.data : note
       ));
@@ -95,7 +95,7 @@ const Dashboard: React.FC = () => {
     if (!window.confirm('Are you sure you want to delete this note?')) return;
 
     try {
-      await api.delete(`/notes/${noteId}`);
+      await api.delete(`/api/notes/${noteId}`);
       setNotes(prev => prev.filter(note => note._id !== noteId));
       toast.success('Note deleted successfully!');
     } catch (error: any) {
