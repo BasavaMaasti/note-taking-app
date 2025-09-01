@@ -13,7 +13,7 @@ const OTPVerification: React.FC = () => {
 
   useEffect(() => {
     if (!email) {
-      navigate('/signup');
+      navigate('/api/signup');
       return;
     }
 
@@ -49,7 +49,7 @@ const OTPVerification: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await api.post('/auth/verify-otp', {
+      const response = await api.post('/api/auth/verify-otp', {
         email,
         otp: otpString
       });
