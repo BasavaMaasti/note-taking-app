@@ -10,7 +10,7 @@ import authRoutes from './routes/auth';
 import notesRoutes from './routes/notes';
 
 const app = express();
-
+app.set('trust proxy', 1);
 // Connect to database
 connectDB();
 
