@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://note-taking-app-production-443e.up.railway.app';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'https://note-taking-app-production-443e.up.railway.app';
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
+  withCredentials: true, // Important for cookies/sessions
   headers: {
     'Content-Type': 'application/json',
   },
