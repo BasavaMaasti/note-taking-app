@@ -155,7 +155,7 @@ const SignIn: React.FC = () => {
                 onError={handleGoogleError}
                 useOneTap
                 size="large"
-                width="100%"
+                width="240"
                 locale="en"
               />
             </div>

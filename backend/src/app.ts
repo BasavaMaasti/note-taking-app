@@ -24,6 +24,7 @@ app.use(
 // Allowed origins setup, including localhost and deployed frontend URL from config
 const allowedOrigins = [
   'http://localhost:3000',
+  'https://note-taking-app-sandy-ten.vercel.app',
   config.frontendUrl, // e.g., https://note-taking-app-sandy-ten.vercel.app
 ];
 
