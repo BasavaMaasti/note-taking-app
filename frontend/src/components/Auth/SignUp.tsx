@@ -19,7 +19,7 @@ const SignUp: React.FC = () => {
     setLoading(true);
 
     try {
-      await api.post('/auth/signup', formData);
+      await api.post('/api/auth/signup', formData);
       toast.success('Account created! Please check your email for OTP.');
       navigate('/verify-otp', { state: { email: formData.email } });
     } catch (error: any) {
